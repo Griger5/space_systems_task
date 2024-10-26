@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "interface.h"
+
 typedef enum command_t {
     EXIT = 0,
     HELP = 1,
@@ -51,10 +53,10 @@ int main(void) {
                 command_help();
                 break;
             case SET:
-                printf("hihihi\n");
+                set_temp(10);
                 break;
             case GET:
-                printf("huhuhu\n");
+                printf("temp: %f\n", get_temp());
                 break;
         }
     }
