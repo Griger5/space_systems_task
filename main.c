@@ -31,7 +31,7 @@ int main(void) {
     double value;
 
     while (is_running) {
-        fgets(command_buffer, 32, stdin);
+        fgets(command_buffer, sizeof(command_buffer), stdin);
 
         token = strtok(command_buffer, " \n");
         
