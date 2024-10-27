@@ -7,8 +7,7 @@
 #include "interface.h"
 
 command_t check_first_token(char *token) {
-    //update with error
-    if (token == NULL) return 0;
+    if (token == NULL) return EMPTY_CMD;
     
     if (strcmp(token, "EXIT") == 0) {
         return EXIT;
@@ -22,13 +21,10 @@ command_t check_first_token(char *token) {
     else if (strcmp(token, "GET") == 0) {
         return GET;
     }
-    else return 0; //update with error
+    else return UNKNOWN_CMD;
 }
 
-command_t check_param_token(char *token) {
-    //update with error
-    if (token == NULL) return 0;
-    
+command_t check_param_token(char *token) {    
     if (strcmp(token, "TEMP") == 0) {
         return TEMP;
     }
@@ -38,12 +34,18 @@ command_t check_param_token(char *token) {
     else if (strcmp(token, "ALTITUDE") == 0) {
         return ALTITUDE;
     }
-    else return 0; //update with error
+    else return UNKNOWN_PARAM;
 }
 
 bool is_valid_double(char *string) {
-    char *end;
-    strtod(string, &end);
+    char *s = string;
 
-    return string != end;
+    while (*s != '\0') {
+        if (isdigit(*s) || *s == '.') {
+            s++;
+        }
+        else return false;
+    }
+
+    return true;
 }

@@ -8,6 +8,12 @@ typedef enum command_t {
     GET = 3
 } command_t;
 
+typedef enum cmd_error_t {
+    EMPTY_CMD = -1,
+    UNKNOWN_CMD = -2,
+    UNKNOWN_PARAM = -3
+} cmd_error_t;
+
 command_t check_first_token(char *token);
 
 command_t check_param_token(char *token);

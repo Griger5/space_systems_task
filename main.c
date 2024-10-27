@@ -33,26 +33,64 @@ int main(void) {
                 break;
 
             case SET:
-                token = strtok(NULL, " ");
-                param = check_param_token(token);
+                token = strtok(NULL, " \n");
 
-                token = strtok(NULL, " ");
-                
-                // add error if not
-                if (is_valid_double(token)) {
-                    value = strtod(token, NULL);
+                if (token == NULL) {
+                    printf("No parameter given.\n");
+                    break;
                 }
 
-                set_parameter(param, value);
+                param = check_param_token(token);
+
+                if (param == UNKNOWN_PARAM) {
+                    printf("Unknown parameter. Maybe try the \'HELP\' command?\n");
+                    break;
+                }
+
+                token = strtok(NULL, " \n");
+
+                if (token == NULL) {
+                    printf("No value was given.\n");
+                    break;
+                }
+                
+                if (is_valid_double(token)) {
+                    value = strtod(token, NULL);
+
+                    set_parameter(param, value);
+                }
+                else {
+                    printf("Given value is not a valid number.\n");
+                    break;
+                }
 
                 break;
 
             case GET:
                 token = strtok(NULL, " \n");
+
+                if (token == NULL) {
+                    printf("No parameter given.\n");
+                    break;
+                } 
+
                 param = check_param_token(token);
+
+                if (param == UNKNOWN_PARAM) {
+                    printf("Unknown parameter. Maybe try the \'HELP\' command?\n");
+                    break;
+                }
 
                 get_parameter(param);
 
+                break;
+
+            case EMPTY_CMD:
+                printf("No command entered.\n");
+                break;
+
+            case UNKNOWN_CMD:
+                printf("Unrecognized command. Maybe try the \'HELP\' command?\n");
                 break;
         }
     }
