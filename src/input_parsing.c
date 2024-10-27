@@ -24,7 +24,7 @@ command_t check_first_token(char *token) {
     else return UNKNOWN_CMD;
 }
 
-command_t check_param_token(char *token) {    
+parameter_t check_param_token(char *token) {    
     if (strcmp(token, "TEMP") == 0) {
         return TEMP;
     }
