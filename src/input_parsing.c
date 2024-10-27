@@ -40,8 +40,15 @@ command_t check_param_token(char *token) {
 bool is_valid_double(char *string) {
     char *s = string;
 
+    // there's at most one period in a valid double
+    int period_count = 0;
+
     while (*s != '\0') {
-        if (isdigit(*s) || *s == '.') {
+        if (isdigit(*s) && period_count < 2) {
+            s++;
+        }
+        else if (*s == '.') {
+            period_count++;
             s++;
         }
         else return false;

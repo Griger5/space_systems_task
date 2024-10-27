@@ -66,6 +66,6 @@ void help(void) {
     printf("COMMAND: SET _param_ _value_ \n \t Sets inputed _param_ to the given _value_.\n");
     printf("\t _param_ has to be equal to one of: TEMP, PRESSURE, ATLITUDE.\n");
     printf("\t _value_ has to be a valid number of type double, seperated by a period.\n");
-    printf("COMMAND: GET _param_ \n \t Outputs the value of given _param_.\n");
+    printf("COMMAND: GET _param_ \n \t Outputs the value of a given _param_.\n");
     printf("\t _param_ has to be equal to one of: TEMP, PRESSURE, ATLITUDE.\n");
 }
