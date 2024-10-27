@@ -10,6 +10,22 @@ void command_help(void) {
     printf("help\n");
 }
 
+bool is_empty(char *token, char *message) {
+    if (token == NULL) {
+        printf("No %s was given.\n", message);
+        return true;
+    }
+    return false;
+}
+
+bool is_unknown_param(parameter_t param) {
+    if (param == UNKNOWN_PARAM) {
+        printf("Unknown parameter. Maybe try the \'HELP\' command?\n");
+        return true;
+    }
+    return false;
+}
+
 int main(void) {
     bool is_running = true;
 
@@ -34,25 +50,13 @@ int main(void) {
 
             case SET:
                 token = strtok(NULL, " \n");
-
-                if (token == NULL) {
-                    printf("No parameter given.\n");
-                    break;
-                }
+                if (is_empty(token, "parameter")) break;
 
                 param = check_param_token(token);
-
-                if (param == UNKNOWN_PARAM) {
-                    printf("Unknown parameter. Maybe try the \'HELP\' command?\n");
-                    break;
-                }
+                if (is_unknown_param(param)) break;
 
                 token = strtok(NULL, " \n");
-
-                if (token == NULL) {
-                    printf("No value was given.\n");
-                    break;
-                }
+                if (is_empty(token, "value")) break;
                 
                 if (is_valid_double(token)) {
                     value = strtod(token, NULL);
@@ -68,18 +72,10 @@ int main(void) {
 
             case GET:
                 token = strtok(NULL, " \n");
-
-                if (token == NULL) {
-                    printf("No parameter given.\n");
-                    break;
-                } 
+                if (is_empty(token, "parameter")) break;
 
                 param = check_param_token(token);
-
-                if (param == UNKNOWN_PARAM) {
-                    printf("Unknown parameter. Maybe try the \'HELP\' command?\n");
-                    break;
-                }
+                if (is_unknown_param(param)) break;
 
                 get_parameter(param);
 
