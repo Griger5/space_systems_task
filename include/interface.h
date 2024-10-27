@@ -20,4 +20,6 @@ void set_parameter(parameter_t param, double new_value);
 
 void get_parameter(parameter_t param);
 
+void help(void);
+
 #endif

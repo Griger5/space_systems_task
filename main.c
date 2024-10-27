@@ -6,10 +6,6 @@
 #include "input_parsing.h"
 #include "interface.h"
 
-void command_help(void) {
-    printf("help\n");
-}
-
 bool is_empty(char *token, char *message) {
     if (token == NULL) {
         printf("No %s was given.\n", message);
@@ -45,7 +41,7 @@ int main(void) {
                 break;
 
             case HELP:
-                command_help();
+                help();
                 break;
 
             case SET:
