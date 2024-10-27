@@ -6,22 +6,6 @@
 #include "input_parsing.h"
 #include "interface.h"
 
-bool is_empty(char *token, char *message) {
-    if (token == NULL) {
-        printf("No %s was given.\n", message);
-        return true;
-    }
-    return false;
-}
-
-bool is_unknown_param(parameter_t param) {
-    if (param == UNKNOWN_PARAM) {
-        printf("Unknown parameter. Maybe try the \'HELP\' command?\n");
-        return true;
-    }
-    return false;
-}
-
 int main(void) {
     bool is_running = true;
 
